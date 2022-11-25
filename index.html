@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Khronos 2.0 - Particles</title>
+
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .blastoff {
+            animation: blastoff 1s ease-in-out forwards;
+        }
+
+        @keyframes blastoff {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            40% {
+                transform: translate(0, 100px);
+            }
+
+            100% {
+                transform: translate(0, -300vh);
+            }
+        }
+    </style>
+
+    <!-- favicons
+    ================================================== --> 
+    <link rel="favicon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+</head>
+
+<body id="top" class="theme-particles">
+
+
+
+    <!-- # header
+        ================================================== -->
+    <header class="s-header">
+        <div class="row s-header__content">
+
+            <div class="s-header__logo">
+                <a class="logo" href="index-particles.html">
+                    <img src="images/logo.svg" alt="Homepage">
+                </a>
+            </div>
+
+
+        </div> <!-- end s-header__content -->
+    </header> <!-- end s-header -->
+
+
+    <!-- # intro 
+        ================================================== -->
+    <section id="intro" class="s-intro">
+
+        <div id="particles-js" class="s-intro__particles"></div>
+
+        <div class="row s-intro__content">
+            <div class="column lg-7">
+
+                <div class="counter">
+                    <div id="blast" class="counter__time">
+                        <span id="seconds" class="ss-days">T-1</span>
+                        <span>seconds to blast off</span>
+                    </div>
+                </div> <!-- end counter -->
+
+                <div class="s-intro__content-bottom">
+                    <h1 id="launch" class="s-intro__content-title">We are prepared to launch!</h1>
+                    <p>
+                        Rotaract Club of UCSC is a youth-based <br>
+                        volunteering organization and a part of <br>
+                        Rotary International District 3220.
+                    </p>
+                    <button onclick="startCount()">Launch!</button>
+
+                </div>
+
+            </div>
+
+            <div class="column lg-5">
+
+                <lottie-player id="rocket" src="https://assets1.lottiefiles.com/private_files/lf30_oxurudgk.json"
+                    background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay>
+                </lottie-player>
+            </div>
+
+
+
+        </div> <!-- intro__content -->
+
+    </section> <!-- end s-intro -->
+
+
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
+        let counter = 6;
+        let timeout;
+        let timer_on = 0;
+
+        function timedCount() {
+            counter--;
+            document.getElementById("seconds").innerHTML = counter;
+            timeout = setTimeout(timedCount, 1000);
+            if (counter == 0) {
+                document.getElementById("blast").innerHTML = "Blast Off!";
+                document.getElementById("launch").innerHTML = "We have launched!";
+                document.getElementById("rocket").className = "blastoff";
+                setTimeout(stopCount, 500);
+
+            }
+        }
+
+        function startCount() {
+            if (!timer_on) {
+                timer_on = 6;
+                timedCount();
+            }
+        }
+
+        function stopCount() {
+            clearTimeout(timeout);
+            window.location.href = "https://racucsc.xyz";
+
+        }
+    </script>
+    <script src="js/particles.min.js"></script>
+    <script src="js/particle-settings.js"></script>
+
+</body>
+
+</html>
